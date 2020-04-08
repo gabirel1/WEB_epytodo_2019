@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS epytodo;
 USE epytodo;
 
 CREATE TABLE IF NOT EXISTS user (
-       user_id BIGINT NOT NULL AUTO_INCREMENT,
+       user_id INT NOT NULL AUTO_INCREMENT,
        username nvarchar(255) NOT NULL,
        password nvarchar(255) NOT NULL,
        email nvarchar(255) DEFAULT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS user (
 );
 
 CREATE TABLE IF NOT EXISTS task (
-       task_id BIGINT NOT NULL AUTO_INCREMENT,
+       task_id INT NOT NULL AUTO_INCREMENT,
        title nvarchar(255) NOT NULL,
        begin datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
        end datetime DEFAULT NULL,
@@ -20,8 +20,7 @@ CREATE TABLE IF NOT EXISTS task (
 );
 
 CREATE TABLE IF NOT EXISTS user_has_task (
-       fk_user_id BIGINT NOT NULL,
-       fk_task_id BIGINT NOT NULL,
+       fk_user_id INT NOT NULL,
+       fk_task_id INT NOT NULL,
        PRIMARY KEY(fk_user_id, fk_task_id)
 );
-
