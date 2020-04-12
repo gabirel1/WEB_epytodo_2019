@@ -117,3 +117,33 @@ def assing_task_to_user(task_name, username) :
         print("Unexpected Error")
         return (84)
 
+def change_task_etat(task_id, etat) :
+    try :
+        connect = connect_to_database()
+        if (connect == None) :
+            print("internal error")
+            return (2)
+
+        if (etat == 0) :
+            cursor = connect.cursor()
+            cursor.execute('UPDATE task SET status = %s WHERE task_id = %d;', "not_started", task_id)
+            connect.commit()
+            cursor.close()
+            connect.close()
+
+        elif (etat == 1) :
+            cursor = connect.cursor()
+            cursor.execute('UPDATE task SET status = %s WHERE task_id = %d;', "in progress", task_id)
+            connect.commit()
+            cursor.close()
+            connect.close()
+        else :
+            cursor = connect.cursor()
+            cursor.execute('UPDATE task SET status = %s WHERE task_id = %d;', "done", task_id)
+            connect.commit()
+            cursor.close()
+            connect.close()
+
+    except Exception :
+        print("Unexpected Error")
+        return (84)
